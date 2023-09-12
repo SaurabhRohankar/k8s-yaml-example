@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  selector:
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+        - name: my-container
+          image: nginx:latest
